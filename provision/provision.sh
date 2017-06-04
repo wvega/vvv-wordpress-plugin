@@ -1,5 +1,9 @@
 #!/bin/bash
 
+noroot() {
+  sudo -EH -u "vagrant" "$@";
+}
+
 install_wordpress() {
     WORDPRESS_VERSION=$1
     WORDPRESS_DIR=$2
