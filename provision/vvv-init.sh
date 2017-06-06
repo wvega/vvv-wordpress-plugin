@@ -1,15 +1,16 @@
 #!/bin/bash
 
-wordpress_version=latest
+wordpress_version=`get_config_value 'wp_version' 'latest'`
 
-website_title="Plugin Development Site"
-website_domain=example.dev
+website_domain=`get_primary_host "${VVV_SITE_NAME}".dev`
+website_title=`get_config_value 'site_title' "${website_domain}"`
 
 admin_user=admin
 admin_password=password
-admin_email=user@example.com
+admin_email="admin@$website_domain"
 
-database_name=example
+database_name=`get_config_value 'db_name' "${VVV_SITE_NAME}"`
+database_name=${database_name//[\\\/\.\<\>\:\"\'\|\?\!\*-]/}
 mysql_user=wp
 mysql_password=wp
 
